@@ -22,7 +22,7 @@ class SearchViewModel @Inject constructor(
 
     fun getArtObjects(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getObjectsByQuery("rembrandt")
+            val response = repository.getObjectsByQuery(query)
 
             if (response.isSuccessful) {
                 response.body()?.artObjects?.let {

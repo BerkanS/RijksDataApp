@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.berkan.rijksdataapp.databinding.FragmentSearchBinding
 import com.berkan.rijksdataapp.domain.model.ArtObject
 import com.berkan.rijksdataapp.presentation.search.adapter.SearchAdapter
+import com.berkan.rijksdataapp.util.hideKeyboard
+import com.berkan.rijksdataapp.util.onSearch
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,12 +45,18 @@ class SearchFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
     }
 
     private fun setListeners() {
-        viewModel.getArtObjects("")
+        binding.inputSearch.onSearch {
+            val query = binding.inputSearch.text.toString()
+            viewModel.getArtObjects(query)
+            binding.progressBar.visibility = View.VISIBLE
+            context?.hideKeyboard(this.view)
+        }
     }
 
     private fun setObservers() {
         viewModel.artObject.observe(viewLifecycleOwner) {
             searchAdapter.submitList(it)
+            binding.progressBar.visibility = View.GONE
         }
     }
 

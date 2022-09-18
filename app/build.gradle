@@ -23,7 +23,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "API_KEY", localProperties['rijks_api_key']
-        buildConfigField "String", "BASE_URL", "\"https://www.rijksmuseum.nl/api/nl/\""
+        buildConfigField "String", "BASE_URL", "\"https://www.rijksmuseum.nl/api/en/\""
     }
 
     buildTypes {
