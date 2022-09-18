@@ -30,9 +30,9 @@ class SearchAdapter(
 
 private class CheckDiffCallback : DiffUtil.ItemCallback<ArtObject>() {
     override fun areItemsTheSame(oldItem: ArtObject, newItem: ArtObject) =
-        oldItem.title == newItem.title
+        oldItem.objectNumber == newItem.objectNumber
 
     override fun areContentsTheSame(oldItem: ArtObject, newItem: ArtObject) =
-        oldItem.title == newItem.title
+        oldItem == newItem
 
 }
