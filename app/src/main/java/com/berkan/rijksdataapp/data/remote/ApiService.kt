@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("collection")
-    suspend fun getObjectsByQuery(@Query("q") query: String): Response<CollectionResponse>
+    suspend fun getObjectsByQuery(@Query("q") query: String, @Query("p") page: Int): Response<CollectionResponse>
 }

@@ -8,10 +8,12 @@ class ArtObjectViewHolder(
     private val binding: ItemArtObjectBinding,
     private val clickListener: SearchAdapter.ArtObjectClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: ArtObject) {
-        binding.model = item
-        binding.root.setOnClickListener {
-            clickListener.onItemClick(item)
+    fun bind(item: ArtObject?) {
+        item?.let {
+            binding.model = item
+            binding.root.setOnClickListener {
+                clickListener.onItemClick(item)
+            }
         }
     }
 }
