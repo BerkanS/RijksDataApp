@@ -6,11 +6,11 @@ data class ArtObject(
     val title: String,
     @Json(name = "principalOrFirstMaker")
     val author: String,
-    val longTitle: String,
-    val webImage: ObjectImage,
-    val headerImage: ObjectImage
+    val longTitle: String?,
+    val webImage: ObjectImage?,
+    val headerImage: ObjectImage?
 )
 
 data class ObjectImage(
-    val url: String
+    val url: String?
 )

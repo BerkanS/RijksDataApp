@@ -41,8 +41,11 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        dataBinding true
         viewBinding true
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -80,7 +83,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // Coil
-    implementation("io.coil-kt:coil:2.1.0")
+    implementation("io.coil-kt:coil:2.2.1")
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
