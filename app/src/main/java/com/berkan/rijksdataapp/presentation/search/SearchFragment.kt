@@ -1,5 +1,6 @@
 package com.berkan.rijksdataapp.presentation.search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,6 @@ import com.berkan.rijksdataapp.presentation.search.adapter.SearchAdapter
 import com.berkan.rijksdataapp.util.hideKeyboard
 import com.berkan.rijksdataapp.util.onSearch
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
@@ -58,6 +58,7 @@ class SearchFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
         binding.inputSearch.onSearch {
             val query = binding.inputSearch.text.toString()
 
+            viewLifecycleOwner.lifecycle
             viewModel.getArtObjects(query).observe(viewLifecycleOwner) {
                 it?.let { pagingData ->
                     searchAdapter.submitData(lifecycle, pagingData)
@@ -74,6 +75,7 @@ class SearchFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
 
     override fun onItemClick(artObject: ArtObject) {
         Toast.makeText(context, artObject.longTitle, Toast.LENGTH_SHORT).show()
+        viewModel.favoriteArtObject(artObject)
     }
 
 }

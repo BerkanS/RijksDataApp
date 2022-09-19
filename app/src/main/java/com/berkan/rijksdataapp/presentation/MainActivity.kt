@@ -17,10 +17,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
+        setBottomNav()
+    }
 
+    private fun setBottomNav() {
         val navController = Navigation.findNavController(this, R.id.activity_main_nav_host_fragment)
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
+
+        // TODO Configure this
+        binding.bottomNavigation.setOnItemReselectedListener { item ->
+//            navController.popBackStack(item.itemId, inclusive = false)
+        }
+
     }
 }

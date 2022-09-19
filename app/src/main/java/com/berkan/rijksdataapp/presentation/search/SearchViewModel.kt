@@ -4,7 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.berkan.rijksdataapp.data.Repository
+import com.berkan.rijksdataapp.domain.model.ArtObject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,5 +16,11 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getArtObjects(query: String) =
-        repository.getObjects(query).cachedIn(viewModelScope)
+        repository.getObjectsFromRemote(query).cachedIn(viewModelScope)
+
+    fun favoriteArtObject(artObject: ArtObject) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.favoriteArtObject(artObject)
+        }
+    }
 }
