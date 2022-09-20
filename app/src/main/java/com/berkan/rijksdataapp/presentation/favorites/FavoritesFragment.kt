@@ -39,9 +39,7 @@ class FavoritesFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
         binding.listFavorites.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun setListeners() {
-
-    }
+    private fun setListeners() {}
 
     private fun setObservers() {
         viewModel.artObjects.observe(viewLifecycleOwner) {

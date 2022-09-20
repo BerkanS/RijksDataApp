@@ -8,7 +8,7 @@ class AuthorHeaderViewHolder(
     private val binding: ItemAuthorHeaderBinding,
 ) : RecyclerView.ViewHolder(binding.root){
     fun bind(item: AuthorHeader) {
-        item?.let {
+        item.let {
             binding.header = item
         }
     }

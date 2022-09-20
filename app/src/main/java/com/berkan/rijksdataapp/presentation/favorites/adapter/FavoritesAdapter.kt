@@ -5,13 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.berkan.rijksdataapp.databinding.ItemArtObjectBinding
+import com.berkan.rijksdataapp.databinding.ItemArtObjectFavoriteBinding
 import com.berkan.rijksdataapp.databinding.ItemAuthorHeaderBinding
 import com.berkan.rijksdataapp.domain.model.ArtObject
 import com.berkan.rijksdataapp.domain.model.AuthorHeader
 import com.berkan.rijksdataapp.domain.model.FavoriteObject
 import com.berkan.rijksdataapp.domain.model.Type
-import com.berkan.rijksdataapp.presentation.search.adapter.ArtObjectViewHolder
 import com.berkan.rijksdataapp.presentation.search.adapter.SearchAdapter
 
 class FavoritesAdapter(
@@ -37,8 +36,8 @@ class FavoritesAdapter(
                 )
             }
             Type.ART_OBJECT -> {
-                ArtObjectViewHolder(
-                    ItemArtObjectBinding.inflate(
+                ArtObjectFavoriteViewHolder(
+                    ItemArtObjectFavoriteBinding.inflate(
                         inflater,
                         parent,
                         false
@@ -59,7 +58,7 @@ class FavoritesAdapter(
                 (holder as AuthorHeaderViewHolder).bind(item as AuthorHeader)
             }
             Type.ART_OBJECT -> {
-                (holder as ArtObjectViewHolder).bind(item as ArtObject)
+                (holder as ArtObjectFavoriteViewHolder).bind(item as ArtObject)
             }
         }
     }

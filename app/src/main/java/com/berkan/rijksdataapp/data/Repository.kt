@@ -20,16 +20,15 @@ class Repository(
     fun getObjectsFromLocal() = localDataSource.getArtObjects()
         .switchMap { artObjects ->
             liveData {
-                var currentAuthor = "NONE"
                 val resultList = mutableListOf<FavoriteObject>()
+                var currentAuthor = "NONE"
 
-                for (item in artObjects) {
-                    if (item.author == currentAuthor) {
-                        resultList.add(item)
-                    } else {
-                        resultList.add(AuthorHeader(item.author))
-                        currentAuthor = item.author
+                for (artObject in artObjects) {
+                    if (artObject.author != currentAuthor) {
+                        resultList.add(AuthorHeader(artObject.author))
+                        currentAuthor = artObject.author
                     }
+                    resultList.add(artObject)
                 }
                 emit(resultList)
             }
