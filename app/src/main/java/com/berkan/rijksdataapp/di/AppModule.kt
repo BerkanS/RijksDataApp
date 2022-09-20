@@ -37,6 +37,7 @@ object AppModule {
                 val newUrl = original.url
                     .newBuilder()
                     .addQueryParameter("key", BuildConfig.API_KEY)
+                    .addQueryParameter("ps", "20")
                     .build()
 
                 val requestBuilder = original.newBuilder()
