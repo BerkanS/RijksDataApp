@@ -1,14 +1,19 @@
 package com.berkan.rijksdataapp.di
 
+import android.content.Context
+import androidx.room.Room
 import com.berkan.rijksdataapp.BuildConfig
 import com.berkan.rijksdataapp.BuildConfig.BASE_URL
 import com.berkan.rijksdataapp.data.Repository
+import com.berkan.rijksdataapp.data.local.FavoritesDao
+import com.berkan.rijksdataapp.data.local.FavoritesDatabase
 import com.berkan.rijksdataapp.data.remote.ApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -64,12 +69,26 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesRepository(apiService: ApiService) = Repository(apiService)
+    fun providesRepository(apiService: ApiService, favoritesDao: FavoritesDao) =
+        Repository(apiService, favoritesDao)
 
     @Singleton
     @Provides
     fun providesMoshi() = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
+
+    @Singleton
+    @Provides
+    fun providesDao(db: FavoritesDatabase) = db.favoritesDao()
+
+    @Singleton
+    @Provides
+    fun providesFavoritesDatabase(@ApplicationContext app: Context) =
+        Room.databaseBuilder(
+            app,
+            FavoritesDatabase::class.java,
+            "fav_db"
+        ).build()
 
 }
