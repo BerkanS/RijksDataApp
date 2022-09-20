@@ -7,7 +7,7 @@ import com.berkan.rijksdataapp.domain.model.ArtObject
 @Dao
 interface FavoritesDao {
 
-    @Query("SELECT * FROM art_object")
+    @Query("SELECT * FROM art_object ORDER BY author")
     fun getArtObjects(): LiveData<List<ArtObject>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

@@ -14,7 +14,7 @@ data class ArtObject(
     val longTitle: String?,
     val webImage: ObjectImage?,
     val headerImage: ObjectImage?
-)
+) : FavoriteObject(Type.ART_OBJECT)
 
 data class ObjectImage(
     val url: String?
