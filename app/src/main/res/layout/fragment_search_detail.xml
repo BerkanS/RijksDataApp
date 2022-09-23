@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="isFavorite"
+            type="Boolean" />
+
+        <variable
             name="model"
             type="com.berkan.rijksdataapp.domain.model.ArtObject" />
     </data>
@@ -14,11 +18,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:padding="@dimen/marginSmaller"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toTopOf="@id/holder_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/label_author"
             style="@style/TextStyleHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
             android:text="@{model.author}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/holder_image"
@@ -51,13 +69,38 @@
         </FrameLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/label_description"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/marginDefault"
+            android:paddingVertical="@dimen/marginSmall"
             android:text="@{model.longTitle}"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/holder_image"
             tools:text="Description" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favorite"
+            app:layout_constraintTop_toBottomOf="@id/iv_favorite"
+            app:layout_constraintEnd_toEndOf="@id/iv_favorite"
+            app:layout_constraintStart_toStartOf="@id/iv_favorite"/>
+
+        <ImageView
+            android:id="@+id/iv_favorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/marginDefault"
+            android:src="@{isFavorite ? @drawable/ic_favorite_filled : @drawable/ic_favorite}"
+            app:layout_constraintBottom_toBottomOf="@id/label_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/label_description"
+            app:layout_constraintTop_toTopOf="@id/label_description"
+            app:tint="@color/favorite"
+            tools:src="@drawable/ic_favorite_filled" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
