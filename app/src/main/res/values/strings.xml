@@ -2,4 +2,6 @@
     <string name="app_name">RijksDataApp</string>
 
     <string name="search_hint">Author...</string>
+    <string name="nothing_found_title">No art objects found</string>
+    <string name="nothing_found_description">Nothing found, try another search query</string>
 </resources>

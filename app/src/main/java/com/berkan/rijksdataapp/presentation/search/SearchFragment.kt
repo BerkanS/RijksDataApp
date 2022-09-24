@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.berkan.rijksdataapp.databinding.FragmentSearchBinding
 import com.berkan.rijksdataapp.domain.model.ArtObject
@@ -48,10 +49,23 @@ class SearchFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
         }
 
         searchAdapter.addLoadStateListener {
-            if (it.refresh == LoadState.Loading || it.append == LoadState.Loading) {
+            when (val state = it.refresh) {
+                is LoadState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is LoadState.Error -> {
+                    viewModel.setHasError(true)
+                    binding.apply {
+                        labelError.text = state.error.message
+                        progressBar.visibility = View.GONE
+                    }
+                }
+                is LoadState.NotLoading -> {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+            if (it.append == LoadState.Loading) {
                 binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.GONE
             }
         }
     }
@@ -75,6 +89,11 @@ class SearchFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
             it?.let { pagingData ->
                 searchAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
             }
+        }
+
+        viewModel.hasError.observe(viewLifecycleOwner) {
+            binding.hasError = it
+            searchAdapter.submitData(viewLifecycleOwner.lifecycle, PagingData.empty())
         }
     }
 
