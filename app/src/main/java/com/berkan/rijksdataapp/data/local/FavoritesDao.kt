@@ -13,6 +13,9 @@ interface FavoritesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertArtObject(artObject: ArtObject)
 
+    @Query("SELECT EXISTS(SELECT * FROM art_object WHERE objectNumber = :objectNumber)")
+    suspend fun isObjectExists(objectNumber: String): Boolean
+
     @Delete
     suspend fun deleteArtObject(artObject: ArtObject)
 }

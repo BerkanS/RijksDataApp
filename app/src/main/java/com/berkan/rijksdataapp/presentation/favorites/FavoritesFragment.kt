@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.berkan.rijksdataapp.databinding.FragmentFavoritesBinding
 import com.berkan.rijksdataapp.domain.model.ArtObject
+import com.berkan.rijksdataapp.presentation.MainViewModel
 import com.berkan.rijksdataapp.presentation.favorites.adapter.FavoritesAdapter
 import com.berkan.rijksdataapp.presentation.search.adapter.SearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,10 +19,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FavoritesFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
 
-    private lateinit var binding: FragmentFavoritesBinding
-    private val viewModel: FavoritesViewModel by viewModels()
-
     private val favoritesAdapter = FavoritesAdapter(this)
+    private lateinit var binding: FragmentFavoritesBinding
+
+    private val viewModel: FavoritesViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +55,7 @@ class FavoritesFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
     }
 
     override fun onItemClick(artObject: ArtObject) {
-
+        mainViewModel.setSelectedArtObject(artObject)
+        findNavController().navigate(FavoritesFragmentDirections.actionFavoritesFragmentToSearchDetailFragment())
     }
 }

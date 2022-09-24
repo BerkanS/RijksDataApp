@@ -17,6 +17,7 @@ class Repository(
     private val remoteDataSource: ApiService,
     private val localDataSource: FavoritesDao
 ) {
+
     fun getObjectsFromLocal() = localDataSource.getArtObjects()
         .switchMap { artObjects ->
             liveData {
@@ -45,7 +46,13 @@ class Repository(
             }
         ).liveData
 
+    suspend fun existsLocally(artObject: ArtObject) =
+        localDataSource.isObjectExists(artObject.objectNumber)
+
     suspend fun favoriteArtObject(artObject: ArtObject) =
         localDataSource.insertArtObject(artObject)
+
+    suspend fun deleteArtObject(artObject: ArtObject) =
+        localDataSource.deleteArtObject(artObject)
 
 }
