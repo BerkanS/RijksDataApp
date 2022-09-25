@@ -93,7 +93,9 @@ class SearchFragment : Fragment(), SearchAdapter.ArtObjectClickListener {
 
         viewModel.hasError.observe(viewLifecycleOwner) {
             binding.hasError = it
-            searchAdapter.submitData(viewLifecycleOwner.lifecycle, PagingData.empty())
+            if (it) {
+                searchAdapter.submitData(viewLifecycleOwner.lifecycle, PagingData.empty())
+            }
         }
     }
 
