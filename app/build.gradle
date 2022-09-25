@@ -55,6 +55,15 @@ android {
         resources.excludes.add("META-INF/*")
     }
 
+    // This is for a workaround for an unresolved MockK bug
+    testOptions {
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging true
+            }
+        }
+    }
+
     configurations {
         androidTestImplementation {
             exclude group: 'io.mockk', module: 'mockk-agent-jvm'
@@ -70,7 +79,7 @@ dependencies {
     def nav_version = "2.5.1"
     def hilt_version = "2.43.2"
     def paging_version = "3.1.1"
-    def mockk_version = "1.12.5"
+    def mockk_version = "1.13.1"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -109,7 +118,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Testing
-    androidTestImplementation "io.mockk:mockk:$mockk_version"
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
