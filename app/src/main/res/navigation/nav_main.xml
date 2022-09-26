@@ -18,7 +18,7 @@
         android:id="@+id/favoritesFragment"
         android:name="com.berkan.rijksdataapp.presentation.favorites.FavoritesFragment"
         android:label="FavoritesFragment"
-        tools:layout="@layout/fragment_favorites" >
+        tools:layout="@layout/fragment_favorites">
         <action
             android:id="@+id/action_favoritesFragment_to_searchDetailFragment"
             app:destination="@id/searchDetailFragment" />
@@ -28,5 +28,10 @@
         android:name="com.berkan.rijksdataapp.presentation.search.detail.SearchDetailFragment"
         android:label="SearchDetailFragment"
         tools:layout="@layout/fragment_search_detail" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.berkan.rijksdataapp.presentation.info.InfoFragment"
+        android:label="InfoFragment"
+        tools:layout="@layout/fragment_info" />
 
 </navigation>

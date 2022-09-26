@@ -4,4 +4,26 @@
     <string name="search_hint">Author...</string>
     <string name="nothing_found_title">No art objects found</string>
     <string name="nothing_found_description">Nothing found, try another search query</string>
+    <string name="info_title">Rijks Data App</string>
+    <string name="info_description">
+        ● Query rijksmuseum data bij searching for authors like \"Rembrandt\" and \"Vermeer\"\n\n
+        ● Results are paginated so you can scroll plenty\n\n
+        ● Press on a result to see its details\n\n
+        ● Favorite a piece of art to save it in a local database\n\n
+        ● Art pieces in the favorites tab are grouped by author, identifiable by the header
+
+    </string>
+    <string name="info_description_two">
+        Made by Berkan Serbest. The following technologies were used:\n\n
+        - LiveData\n
+        - MVVM Architecture\n
+        - Room database\n
+        - Navigation component\n
+        - Dagger-Hilt\n
+        - Paging 3\n
+        - Retrofit, OkHttp\n
+        - Moshi\n
+        - Coil\n
+        - MockK (testing)\n
+    </string>
 </resources>
