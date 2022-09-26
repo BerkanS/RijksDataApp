@@ -1,4 +1,4 @@
-package com.berkan.rijksdataapp.presentation
+package com.berkan.rijksdataapp.presentation.info
 
 import android.os.Bundle
 import android.view.LayoutInflater

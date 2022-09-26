@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_search_detail" />
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.berkan.rijksdataapp.presentation.InfoFragment"
+        android:name="com.berkan.rijksdataapp.presentation.info.InfoFragment"
         android:label="InfoFragment"
         tools:layout="@layout/fragment_info" />
 
