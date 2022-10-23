@@ -21,6 +21,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+const val QUERY_PAGE_SIZE = "20"
+
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
@@ -42,7 +44,7 @@ object AppModule {
                 val newUrl = original.url
                     .newBuilder()
                     .addQueryParameter("key", BuildConfig.API_KEY)
-                    .addQueryParameter("ps", "20")
+                    .addQueryParameter("ps", QUERY_PAGE_SIZE)
                     .build()
 
                 val requestBuilder = original.newBuilder()

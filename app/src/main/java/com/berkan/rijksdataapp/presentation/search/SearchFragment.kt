@@ -15,8 +15,8 @@ import com.berkan.rijksdataapp.databinding.FragmentSearchBinding
 import com.berkan.rijksdataapp.domain.model.ArtObject
 import com.berkan.rijksdataapp.presentation.MainViewModel
 import com.berkan.rijksdataapp.presentation.search.adapter.SearchAdapter
-import com.berkan.rijksdataapp.util.hideKeyboard
-import com.berkan.rijksdataapp.util.onSearch
+import com.berkan.rijksdataapp.util.extensions.hideKeyboard
+import com.berkan.rijksdataapp.util.extensions.onSearch
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
