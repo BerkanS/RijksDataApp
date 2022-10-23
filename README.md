@@ -9,7 +9,7 @@ Api key is retrievable from [the rijksmuseum website](https://data.rijksmuseum.n
 ### Functionality
 The app makes use of the API by allowing users to query authors and art pieces. A result can be saved to local database by favoriting it. Favoriting multiple art pieces from the same authors can be seen in the favorites tab, grouped by author.
 
-Example queries: `Rembrandt`, `Night watch` and `Vermeer`.
+Example queries: `Rembrandt`, `Night watch`/`Nachwacht` and `Vermeer`.
 
 ### LiveData
 Objects are wrapped in LiveData to ensure constant and async flow. Objects stored in the database are also wrapped in LiveData, causing any database operations to be reflected into the UI instantly.
